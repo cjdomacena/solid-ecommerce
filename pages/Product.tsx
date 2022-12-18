@@ -10,7 +10,6 @@ const Product = () => {
   const params = useParams();
 
   const [data] = createResource(() => params.id, fetchSingleProduct);
-  const product = { ...data(), quantity: 1 };
   const capitalizedFirstLetter = (text: string) => {
     const firstLetter = text.charAt(0).toUpperCase();
 
@@ -40,7 +39,7 @@ const Product = () => {
               </div>
               <button
                 class="px-4 py-2 bg-blue-700 rounded text-neutral-100"
-                onClick={() => addToCart(product)}
+                onClick={() => addToCart(data())}
               >
                 Add to Cart
               </button>
