@@ -12,6 +12,7 @@ import {
 import { Navbar } from "../components/Navbar";
 import Products, { IProduct } from "@pages/Products";
 import { fetchSingleProduct } from "../lib/api";
+import CartPage from "@pages/CartPage";
 
 const Product = lazy(() => import("@pages/Product"));
 
@@ -25,15 +26,16 @@ export const ProductDetails = ({ params }) => {
 
 const App: Component = () => {
   return (
-    <div class="min-h-screen bg-neutral-900 text-neutral-50 ">
+    <div class="min-h-screen text-neutral-900">
       <Navbar />
       <Container>
         <Routes>
-          <Route path="/" component={Home} />
+          <Route path="/" component={Products} />
           <Route path="/products">
             <Route path="/" component={Products} />
             <Route path="/:id" component={Product} data={ProductDetails} />
           </Route>
+          <Route path="/cart" component={CartPage}></Route>
         </Routes>
       </Container>
     </div>

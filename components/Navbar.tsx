@@ -7,7 +7,7 @@ const links = [{ href: "/products", value: "Products" }];
 
 export const Navbar = () => {
   return (
-    <nav class="w-full h-auto p-4 border-b border-b-neutral-800 flex justify-between">
+    <nav class="w-full h-auto p-4 border-b border-b-neutral-200 flex justify-between">
       <div>
         <A href="/">SolidStore</A>
       </div>
@@ -25,11 +25,13 @@ export const Navbar = () => {
             </li>
           )}
         </For>
-        <li class="flex gap-2 items-center">
-          <AiOutlineShoppingCart />
-          <Show when={getCartCount() > 0}>
-            <p>{getCartCount()}</p>
-          </Show>
+        <li>
+          <A href="/cart" class="flex gap-2 items-center">
+            <AiOutlineShoppingCart />
+            <Show when={getCartCount() > 0}>
+              <p>{getCartCount()}</p>
+            </Show>
+          </A>
         </li>
       </ul>
     </nav>

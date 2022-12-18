@@ -41,3 +41,48 @@ export const getCartCount = () => {
     0
   );
 };
+
+export const removeFromCart = (productId: string | number) => {
+  const tempCart = JSON.parse(JSON.stringify([...cart]));
+  const productIndexToRemove = tempCart.findIndex(
+    (cartItem) => cartItem.id === productId
+  );
+  if (
+    productIndexToRemove > -1 &&
+    productIndexToRemove === tempCart.length - 1
+  ) {
+    tempCart.pop();
+  } else {
+    const productToRemove = tempCart[productIndexToRemove];
+    tempCart[productIndexToRemove] = tempCart[tempCart.length - 1];
+    tempCart[tempCart.length - 1] = productToRemove;
+    tempCart.pop();
+  }
+  setCart([...tempCart]);
+  localStorage.setItem("cart", JSON.stringify([...tempCart]));
+};
+
+export const reduceQuantity = (productId: string | number) => {
+  const tempCart = JSON.parse(JSON.stringify([...cart]));
+  const productIndexToRemove = tempCart.findIndex(
+    (cartItem) => cartItem.id === productId
+  );
+  if (productIndexToRemove > -1) {
+    if (tempCart[productIndexToRemove].quantity === 1) {
+      removeFromCart(productId);
+      return;
+    } else {
+      tempCart[productIndexToRemove].quantity -= 1;
+    }
+  }
+  setCart([...tempCart]);
+  localStorage.setItem("cart", JSON.stringify([...tempCart]));
+};
+
+export const getCartTotalPrice = () => {
+  let totalPrice = 0;
+  cart.map((cartItem) => {
+    totalPrice += cartItem.quantity * Number(cartItem.price);
+  });
+  return totalPrice;
+};

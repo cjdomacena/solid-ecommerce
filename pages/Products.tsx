@@ -17,7 +17,7 @@ export interface IProduct {
 const Products = () => {
   return (
     <div class="space-y-8">
-      <div class="flex justify-between items-center px-8">
+      <div class="flex justify-between items-center">
         <h4 class=" text-2xl font-semibold">Products</h4>
         <Show when={tempProducts}>
           <p>{tempProducts.length} results</p>
@@ -25,7 +25,9 @@ const Products = () => {
       </div>
       <div>
         <CardLayout>
-          <For each={tempProducts}>{(product) => <Card {...product} />}</For>
+          <Show when={products.state === "ready"}>
+            <For each={products()}>{(product) => <Card {...product} />}</For>
+          </Show>
         </CardLayout>
       </div>
     </div>
