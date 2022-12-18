@@ -19,7 +19,7 @@ const Products = () => {
     <div class="space-y-8">
       <div class="flex justify-between items-center">
         <h4 class=" text-2xl font-semibold">Products</h4>
-        <Show when={tempProducts}>
+        <Show when={tempProducts} fallback={<FallbackLoader />}>
           <p>{tempProducts.length} results</p>
         </Show>
       </div>
