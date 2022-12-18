@@ -1,5 +1,7 @@
 import { A } from "@solidjs/router";
-import { For } from "solid-js";
+import { For, Show } from "solid-js";
+import { AiOutlineShoppingCart } from "solid-icons/ai";
+import { getCartCount } from "../lib/store";
 
 const links = [{ href: "/products", value: "Products" }];
 
@@ -23,6 +25,12 @@ export const Navbar = () => {
             </li>
           )}
         </For>
+        <li class="flex gap-2 items-center">
+          <AiOutlineShoppingCart />
+          <Show when={getCartCount() > 0}>
+            <p>{getCartCount()}</p>
+          </Show>
+        </li>
       </ul>
     </nav>
   );

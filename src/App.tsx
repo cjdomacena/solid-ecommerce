@@ -15,7 +15,7 @@ import { fetchSingleProduct } from "../lib/api";
 
 const Product = lazy(() => import("@pages/Product"));
 
-const ProductDetails = ({ params }) => {
+export const ProductDetails = ({ params }) => {
   const [product]: ResourceReturn<IProduct> = createResource(
     () => params.id,
     fetchSingleProduct
