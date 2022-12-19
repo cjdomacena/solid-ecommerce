@@ -24,11 +24,11 @@ const Products = () => {
         </Show>
       </div>
       <div>
-        <CardLayout>
-          <Show when={products.state === "ready"} fallback={<FallbackLoader />}>
+        <Show when={products.state === "ready"} fallback={<FallbackLoader />}>
+          <CardLayout>
             <For each={products()}>{(product) => <Card {...product} />}</For>
-          </Show>
-        </CardLayout>
+          </CardLayout>
+        </Show>
       </div>
     </div>
   );
