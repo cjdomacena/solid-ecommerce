@@ -19,13 +19,13 @@ const Products = () => {
     <div class="space-y-8">
       <div class="flex justify-between items-center">
         <h4 class=" text-2xl font-semibold">Products</h4>
-        <Show when={tempProducts} fallback={<FallbackLoader />}>
+        <Show when={tempProducts}>
           <p>{tempProducts.length} results</p>
         </Show>
       </div>
       <div>
         <CardLayout>
-          <Show when={products.state === "ready"}>
+          <Show when={products.state === "ready"} fallback={<FallbackLoader />}>
             <For each={products()}>{(product) => <Card {...product} />}</For>
           </Show>
         </CardLayout>
